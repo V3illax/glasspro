@@ -313,7 +313,7 @@ footer {
    MOBILE
 ========================= */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
     header {
         padding: 20px;
@@ -334,16 +334,32 @@ footer {
         font-size: 36px;
     }
 
+    /* SERVICES SUR CELLULAIRE */
+
+    #services {
+        width: 100%;
+        padding: 60px 20px;
+    }
+
     .services-container {
-    flex-direction: column !important;
-    align-items: center;
-}
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        gap: 25px;
+    }
 
     .service-card {
-    width: 100%;
-    max-width: 350px;
-    padding: 30px 25px;
-}
+        width: 100% !important;
+        max-width: 350px !important;
+        flex: none !important;
+        padding: 30px 25px;
+    }
+
+    /* À PROPOS */
 
     .about-benefits {
         flex-direction: column;
@@ -351,10 +367,12 @@ footer {
     }
 
     .benefit {
-    width: 100%;
-    max-width: 350px;
-    padding: 30px 25px;
-}
+        width: 100%;
+        max-width: 350px;
+        padding: 30px 25px;
+    }
+
+    /* CONTACT */
 
     #contact form {
         width: 90%;
