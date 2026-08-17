@@ -2,6 +2,10 @@
    BASE
 ========================= */
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -53,9 +57,7 @@ nav a:hover {
     text-align: center;
     padding: 120px 20px;
     color: white;
-
     background-image: url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80");
-
     background-size: cover;
     background-position: center;
 }
@@ -128,8 +130,8 @@ nav a:hover {
 }
 
 .services-container {
-    display: flex !important;
-    flex-direction: row !important;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: stretch;
     gap: 25px;
@@ -142,6 +144,7 @@ nav a:hover {
     background-color: white;
     padding: 35px 30px;
     width: 280px;
+    flex-shrink: 0;
     border-radius: 14px;
     border: 1px solid #e5e5e5;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -337,12 +340,8 @@ footer {
     }
 
     .service-card {
-    background-color: white;
-    padding: 35px 30px;
-    width: 280px;
-    flex-shrink: 0;
-    border-radius: 14px;
-    border: 1px solid #e5e5e5;
+        width: 80%;
+        max-width: 350px;
     }
 
     .about-benefits {
