@@ -340,9 +340,10 @@ footer {
     }
 
     .service-card {
-        width: 80%;
-        max-width: 350px;
-    }
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 25px;
+}
 
     .about-benefits {
         flex-direction: column;
@@ -350,9 +351,10 @@ footer {
     }
 
     .benefit {
-        width: 80%;
-        max-width: 350px;
-    }
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 25px;
+}
 
     #contact form {
         width: 90%;
