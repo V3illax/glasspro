@@ -497,6 +497,46 @@ document.querySelectorAll(".privacy-carousel").forEach(carousel => {
 });
 </script>
 
+<script>
+document.querySelectorAll(".privacy-carousel .privacy-photo").forEach(photo => {
+    photo.addEventListener("click", () => {
+        const lightbox = document.createElement("div");
+        lightbox.className = "photo-lightbox open";
+
+        const enlarged = document.createElement("img");
+        enlarged.src = photo.src;
+        enlarged.alt = photo.alt;
+
+        const close = document.createElement("button");
+        close.className = "photo-lightbox-close";
+        close.type = "button";
+        close.textContent = "×";
+        close.setAttribute("aria-label", "Fermer");
+
+        lightbox.append(enlarged, close);
+        document.body.appendChild(lightbox);
+
+        function closeLightbox() {
+            lightbox.remove();
+            document.removeEventListener("keydown", onKeyDown);
+        }
+
+        function onKeyDown(event) {
+            if (event.key === "Escape") closeLightbox();
+        }
+
+        close.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", onKeyDown);
+    });
+});
+</script>
+
+
 </body>
 
 </html>

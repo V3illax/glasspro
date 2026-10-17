@@ -711,3 +711,45 @@ footer {
         height: 120px;
     }
 }
+
+/* Agrandir les photos du carrousel */
+.privacy-carousel .privacy-photo {
+    cursor: zoom-in;
+}
+
+/* Fenêtre d'agrandissement */
+.photo-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.photo-lightbox.open {
+    display: flex;
+}
+
+.photo-lightbox img {
+    display: block;
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.photo-lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 38px;
+    cursor: pointer;
+}
