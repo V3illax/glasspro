@@ -498,13 +498,20 @@ document.querySelectorAll(".privacy-carousel").forEach(carousel => {
 </script>
 
 <script>
-document.querySelectorAll(".privacy-carousel .privacy-photo").forEach(photo => {
+
+<script>
+const photos = Array.from(
+    document.querySelectorAll(".privacy-carousel .privacy-photo")
+);
+
+photos.forEach((photo, index) => {
     photo.addEventListener("click", () => {
+        let currentIndex = index;
+
         const lightbox = document.createElement("div");
         lightbox.className = "photo-lightbox open";
 
         const enlarged = document.createElement("img");
-        enlarged.src = photo.src;
         enlarged.alt = photo.alt;
 
         const close = document.createElement("button");
@@ -513,8 +520,32 @@ document.querySelectorAll(".privacy-carousel .privacy-photo").forEach(photo => {
         close.textContent = "×";
         close.setAttribute("aria-label", "Fermer");
 
-        lightbox.append(enlarged, close);
-        document.body.appendChild(lightbox);
+        const prev = document.createElement("button");
+        prev.className = "lightbox-prev";
+        prev.type = "button";
+        prev.textContent = "❮";
+        prev.setAttribute("aria-label", "Photo précédente");
+
+        const next = document.createElement("button");
+        next.className = "lightbox-next";
+        next.type = "button";
+        next.textContent = "❯";
+        next.setAttribute("aria-label", "Photo suivante");
+
+        function showPhoto() {
+            enlarged.src = photos[currentIndex].src;
+            enlarged.alt = photos[currentIndex].alt;
+        }
+
+        function previousPhoto() {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+            showPhoto();
+        }
+
+        function nextPhoto() {
+            currentIndex = (currentIndex + 1) % photos.length;
+            showPhoto();
+        }
 
         function closeLightbox() {
             lightbox.remove();
@@ -523,9 +554,17 @@ document.querySelectorAll(".privacy-carousel .privacy-photo").forEach(photo => {
 
         function onKeyDown(event) {
             if (event.key === "Escape") closeLightbox();
+            if (event.key === "ArrowLeft") previousPhoto();
+            if (event.key === "ArrowRight") nextPhoto();
         }
 
+        showPhoto();
+        lightbox.append(prev, enlarged, next, close);
+        document.body.appendChild(lightbox);
+
         close.addEventListener("click", closeLightbox);
+        prev.addEventListener("click", previousPhoto);
+        next.addEventListener("click", nextPhoto);
 
         lightbox.addEventListener("click", event => {
             if (event.target === lightbox) closeLightbox();
@@ -534,6 +573,8 @@ document.querySelectorAll(".privacy-carousel .privacy-photo").forEach(photo => {
         document.addEventListener("keydown", onKeyDown);
     });
 });
+</script>
+
 </script>
 
 
