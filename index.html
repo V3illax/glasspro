@@ -89,36 +89,55 @@
                 </div>
 
 
-                <!-- SERVICE 2 -->
-                <div class="service-card">
+                
+<!-- SERVICE 2 -->
+<div class="service-card">
 
-                    <img
-                        class="service-image"
-                        src="https://images.unsplash.com/photo-1773777135936-165f7ec74a7f?auto=format&fit=crop&w=900&q=80"
-                        alt="Fenêtre résidentielle avec film de confidentialité"
-                    >
+    <div class="privacy-carousel">
+        <img class="privacy-photo active"
+             src="https://images.openai.com/static-rsc-4/6UDvvNMQYzX8ahLy7FGshPcohC6n75f81wgMSlJz2dIYv0gaPehlSnQKauwFxM4YqwGDS-vPo3_rGyg8i9LzUwlmLy1V7VVe8EO2bMO75ngMduN6avcmvCa8ABpN6iL3hUs3ovPtza5Xb1dUoQl7I8jpjAnaESeIRd5gNTmmVA0?purpose=inline"
+             alt="Douche en verre avec film intimité">
 
-                    <div class="service-stat">
-                        Jusqu'à 100 %
-                    </div>
+        <img class="privacy-photo"
+             src="https://images.openai.com/static-rsc-4/0KV4AIC8q50nHPScksaMYZJRIvcgZGCvbX1iS2L7C6-gfUJ3tdpvYvGeLAkGY9Gk774Q8EpVvFlUDEBvSsxDH3Ao6Z6mDRwjTR5x2o9cTa72cBKNM5W7Q2hgMll0l1LehjAxczBK3xLhTfq8_PY5MgBNy9j0Ij2YQHPDyS2VqoQ?purpose=inline"
+             alt="Division en verre dépoli">
 
-                    <div class="service-stat-label">
-                        de visibilité bloquée
-                    </div>
+        <img class="privacy-photo"
+             src="https://images.openai.com/static-rsc-4/V6wh6hRw7NTDY4vVF2SyksJCZweuzcRyVPbCEy1StvCUORG48wqLiArEnRazTHgOfUkfSQ3mdHLWqJ3xWoKd5Otxq-lom4a0ZMJTL7wQRUeWYQmeB1S_EPETqG3DBw3feZAXBNBzBayVxKHrmumoc0nvecZN98hhQ40tAJUH4lw?purpose=inline"
+             alt="Porte d'entrée avec film intimité">
 
-                    <h3>Confidentialité</h3>
+        <button class="privacy-prev" type="button" aria-label="Photo précédente">&#10094;</button>
+        <button class="privacy-next" type="button" aria-label="Photo suivante">&#10095;</button>
 
-                    <p>
-                        Augmentez votre intimité tout en conservant
-                        une partie de la lumière naturelle selon le film choisi.
-                    </p>
+        <div class="privacy-dots">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 
-                    <p class="service-ideal">
-                        <strong>Idéal pour :</strong> salles de bain, chambres
-                        et fenêtres donnant sur les voisins.
-                    </p>
+    <div class="service-stat">
+        Jusqu'à 100 %
+    </div>
 
-                </div>
+    <div class="service-stat-label">
+        de visibilité bloquée
+    </div>
+
+    <h3>Confidentialité</h3>
+
+    <p>
+        Augmentez votre intimité tout en conservant
+        une partie de la lumière naturelle selon le film choisi.
+    </p>
+
+    <p class="service-ideal">
+        <strong>Idéal pour :</strong> salles de bain, chambres
+        et fenêtres donnant sur les voisins.
+    </p>
+
+</div>
+
 
 
                 <!-- SERVICE 3 -->
@@ -437,6 +456,46 @@
         </p>
 
     </footer>
+
+<script>
+document.querySelectorAll(".privacy-carousel").forEach(carousel => {
+    const photos = [...carousel.querySelectorAll(".privacy-photo")];
+    const dots = [...carousel.querySelectorAll(".privacy-dots span")];
+    let index = 0;
+    let startX = 0;
+
+    function showPhoto(nextIndex) {
+        index = (nextIndex + photos.length) % photos.length;
+
+        photos.forEach((photo, i) =>
+            photo.classList.toggle("active", i === index)
+        );
+
+        dots.forEach((dot, i) =>
+            dot.classList.toggle("active", i === index)
+        );
+    }
+
+    carousel.querySelector(".privacy-prev").addEventListener("click", () => {
+        showPhoto(index - 1);
+    });
+
+    carousel.querySelector(".privacy-next").addEventListener("click", () => {
+        showPhoto(index + 1);
+    });
+
+    carousel.addEventListener("touchstart", event => {
+        startX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", event => {
+        const distance = event.changedTouches[0].screenX - startX;
+        if (Math.abs(distance) > 40) {
+            showPhoto(index + (distance < 0 ? 1 : -1));
+        }
+    }, { passive: true });
+});
+</script>
 
 </body>
 
